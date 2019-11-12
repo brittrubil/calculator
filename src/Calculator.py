@@ -37,7 +37,7 @@ def square(a):
     return c
 
 
-def squareroot(a):
+def square_root(a):
     a = int(a)
     c = math.sqrt(a)
     return float(format(c, '.8f'))
@@ -70,5 +70,5 @@ class Calculator:
         return self.result
 
     def sqrt(self, a):
-        self.result = squareroot(a)
+        self.result = square_root(a)
         return self.result
