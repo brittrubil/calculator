@@ -16,7 +16,7 @@ def subtraction(a, b):
     return c
 
 
-def multiplication (a, b):
+def multiplication(a, b):
     a = int(a)
     b = int(b)
     c = b * a

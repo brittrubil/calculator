@@ -1,7 +1,6 @@
 import unittest
 from Calculator import Calculator
 from CsvReader import CsvReader
-from pprint import pprint
 
 
 class MyTestCase(unittest.TestCase):
@@ -47,7 +46,7 @@ class MyTestCase(unittest.TestCase):
     def test_square_root(self):
         test_data = CsvReader('/src/squareroot.csv').data
         for row in test_data:
-            self.assertEqual(self.calculator.square(row['Value 1']), float(row['Result']))
+            self.assertEqual(self.calculator.sqrt(row['Value 1']), float(row['Result']))
             self.assertEqual(self.calculator.result, float(row['Result']))
 
 
