@@ -1,8 +1,11 @@
 from CsvReader import CsvReader
+import math
 
 
 def addition(a, b):
-    c = a + b
+    a = int(a)
+    b = int(b)
+    c = b + a
     return c
 
 
