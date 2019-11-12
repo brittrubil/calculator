@@ -1,4 +1,4 @@
-from CsvReader import CsvReader
+from __future__ import division
 import math
 
 
@@ -15,11 +15,19 @@ def subtraction(a, b):
     c = b - a
     return c
 
+
 def multiplication (a, b):
     a = int(a)
     b = int(b)
     c = b * a
     return c
+
+
+def division(a, b):
+    a = int(a)
+    b = int(b)
+    c = float(b / a)
+    return round(c, 9)
 
 
 class Calculator:
@@ -38,4 +46,8 @@ class Calculator:
 
     def multiply(self, a, b):
         self.result = multiplication(a, b)
+        return self.result
+
+    def divide(self, a, b):
+        self.result = division(a, b)
         return self.result
