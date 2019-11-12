@@ -5,7 +5,7 @@ import math
 def addition(a, b):
     a = int(a)
     b = int(b)
-    c = b + a
+    c = a + b
     return c
 
 
@@ -19,15 +19,16 @@ def subtraction(a, b):
 def multiplication(a, b):
     a = int(a)
     b = int(b)
-    c = b * a
+    c = a * b
     return c
 
 
 def division(a, b):
     a = int(a)
     b = int(b)
-    c = float(b / a)
-    return round(c, 9)
+    c = b / a
+    c = round(c, 9)
+    return c
 
 
 def square(a):
