@@ -178,4 +178,18 @@ print(session.query(Customer).limit(2).offset(2))
 session.query(Item).filter(Item.name.ilike("wa%")).all()
 session.query(Item).filter(Item.name.ilike("wa%")).order_by(Item.cost_price).all()
 
+session.query(Customer).join(Order).all()
+print(session.query(Customer).join(Order))
+session.query(Customer.id, Customer.username, Order.id).join(Order).all()
+session.query(Table1).join(Table2).join(Table3).join(Table4).all()
+session.query(
+    Customer.first_name,
+    Item.name,
+    Item.selling_price,
+    OrderLine.quantity
+).join(Order).join(OrderLine).join(Item).filter(
+    Customer.first_name == 'John',
+    Customer.last_name == 'Green',
+    Order.id == 1,
+).all()
 
