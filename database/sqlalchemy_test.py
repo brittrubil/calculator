@@ -1,5 +1,5 @@
 from _operator import and_, not_
-
+from sqlalchemy import func
 from sqlalchemy.orm import create_engine, Session
 from sqlalchemy.testing.pickleable import Order
 
@@ -123,7 +123,6 @@ print('-------')
 for ol in c1.orders[1].order_lines:
     ol.id, ol.item, ol.quantity
 
-
 q = session.query(Customer.id, Customer.first_name).all()
 
 for c in q:
@@ -198,3 +197,7 @@ session.query(
     Order.id,
 ).outerjoin(Order, full=True).all()
 
+session.query(func.count(Customer.id)).join(Order).filter(
+    Customer.first_name == 'John',
+    Customer.last_name == 'Green',
+).group_by(Customer.id).scalar()
