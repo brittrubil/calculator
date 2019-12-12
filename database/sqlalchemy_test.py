@@ -121,7 +121,7 @@ print('-------')
 for ol in c1.orders[1].order_lines:
     ol.id, ol.item, ol.quantity
 
-    
+
 q = session.query(Customer)
 
 for c in q:
