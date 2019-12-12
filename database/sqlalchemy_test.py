@@ -130,3 +130,7 @@ for c in q:
 session.query(Customer).count()
 session.query(Item).count()
 session.query(Order).count()
+
+session.query(Customer).first()
+session.query(Item).first()
+session.query(Order).first()
