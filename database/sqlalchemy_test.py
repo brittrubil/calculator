@@ -1,5 +1,5 @@
 from sqlalchemy.orm import create_engine, Session
-engine = create_engine("postgres+psycopg2://postgres:pass@localhost/mydb")
+engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 from sqlalchemy.orm import sessionmaker, Session
 
 Session = sessionmaker(bind=engine)
