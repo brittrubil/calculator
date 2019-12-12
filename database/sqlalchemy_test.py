@@ -163,3 +163,6 @@ session.query(Order).filter(Order.date_shipped != None).all()
 
 session.query(Customer).filter(Customer.first_name.in_(['Toby', 'Sarah'])).all()
 session.query(Customer).filter(Customer.first_name.notin_(['Toby', 'Sarah'])).all()
+
+session.query(Item).filter(Item.cost_price.between(10, 50)).all()
+session.query(Item).filter(not_(Item.cost_price.between(10, 50))).all()
