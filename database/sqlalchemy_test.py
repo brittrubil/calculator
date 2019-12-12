@@ -158,4 +158,5 @@ session.query(Customer).filter(and_(
     )
 )).all()
 
-
+session.query(Order).filter(Order.date_shipped == None).all()
+session.query(Order).filter(Order.date_shipped != None).all()
