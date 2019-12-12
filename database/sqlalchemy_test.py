@@ -166,3 +166,6 @@ session.query(Customer).filter(Customer.first_name.notin_(['Toby', 'Sarah'])).al
 
 session.query(Item).filter(Item.cost_price.between(10, 50)).all()
 session.query(Item).filter(not_(Item.cost_price.between(10, 50))).all()
+
+session.query(Item).filter(Item.name.ilike("w%")).all()
+session.query(Item).filter(not_(Item.name.like("W%"))).all()
