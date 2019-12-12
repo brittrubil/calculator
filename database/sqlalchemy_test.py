@@ -108,3 +108,15 @@ session.add_all([o1, o2])
 
 session.new
 session.commit()
+
+c1.orders
+o1.customer
+c1.orders[0].order_lines, c1.orders[1].order_lines
+
+for ol in c1.orders[0].order_lines:
+    ol.id, ol.item, ol.quantity
+
+print('-------')
+
+for ol in c1.orders[1].order_lines:
+    ol.id, ol.item, ol.quantity
