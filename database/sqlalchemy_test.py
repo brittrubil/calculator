@@ -5,6 +5,9 @@ from sqlalchemy.testing.pickleable import Order
 from sqlalchemy import distinct
 from sqlalchemy import cast, Date, distinct, union
 from sqlalchemy import text
+from sqlalchemy import update
+from sqlalchemy.exc import IntegrityError
+from datetime import datetime
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 from sqlalchemy.orm import sessionmaker, Session
@@ -254,3 +257,31 @@ session.query(Item).filter(
     Item.name.ilike("W%")
 ).update({"quantity": 60}, synchronize_session='fetch')
 session.commit()
+
+
+def dispatch_order(order_id):
+    # check whether order_id is valid or not
+    order = session.query(Order).get(order_id)
+
+    if not order:
+        raise ValueError("Invalid order id: {}.".format(order_id))
+
+    if order.date_shipped:
+        print("Order already shipped.")
+        return
+
+    try:
+        for i in order.order_lines:
+            i.item.quantity = i.item.quantity - i.quantity
+
+        order.date_shipped = datetime.now()
+        session.commit()
+        print("Transaction completed.")
+
+    except IntegrityError as e:
+        print(e)
+        print("Rolling back ...")
+        session.rollback()
+        print("Transaction failed.")
+
+    dispatch_order(1)
