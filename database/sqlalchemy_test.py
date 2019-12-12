@@ -3,6 +3,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import create_engine, Session
 from sqlalchemy.testing.pickleable import Order
 from sqlalchemy import distinct
+from sqlalchemy import cast, Date, distinct, union
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 from sqlalchemy.orm import sessionmaker, Session
@@ -214,4 +215,11 @@ session.query(Customer.town).filter(Customer.id < 10).distinct().all()
 session.query(
     func.count(distinct(Customer.town)),
     func.count(Customer.town)
+).all()
+
+session.query(
+    cast(func.pi(), Integer),
+    cast(func.pi(), Numeric(10,2)),
+    cast("2010-12-01", DateTime),
+    cast("2010-12-01", Date),
 ).all()
