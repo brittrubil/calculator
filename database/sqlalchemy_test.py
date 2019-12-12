@@ -121,10 +121,8 @@ print('-------')
 for ol in c1.orders[1].order_lines:
     ol.id, ol.item, ol.quantity
 
-session.query(Customer).all()
+    
+q = session.query(Customer)
 
-session.query(Item).all()
-session.query(Order).all()
-
-print(session.query(Customer))
-
+for c in q:
+    print(c.id, c.first_name)
