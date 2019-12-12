@@ -126,3 +126,5 @@ session.query(Customer).all()
 session.query(Item).all()
 session.query(Order).all()
 
+print(session.query(Customer))
+
