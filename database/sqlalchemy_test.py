@@ -127,4 +127,6 @@ q = session.query(Customer.id, Customer.first_name).all()
 for c in q:
     print(c.id, c.first_name)
 
-
+session.query(Customer).count()
+session.query(Item).count()
+session.query(Order).count()
