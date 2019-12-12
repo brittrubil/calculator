@@ -2,6 +2,7 @@ from _operator import and_, not_
 from sqlalchemy import func
 from sqlalchemy.orm import create_engine, Session
 from sqlalchemy.testing.pickleable import Order
+from sqlalchemy import distinct
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 from sqlalchemy.orm import sessionmaker, Session
@@ -206,3 +207,11 @@ session.query(
     func.count("*").label('town_count'),
     Customer.town
 ).group_by(Customer.town).having(func.count("*") > 2).all()
+
+session.query(Customer.town).filter(Customer.id < 10).all()
+session.query(Customer.town).filter(Customer.id < 10).distinct().all()
+
+session.query(
+    func.count(distinct(Customer.town)),
+    func.count(Customer.town)
+).all()
