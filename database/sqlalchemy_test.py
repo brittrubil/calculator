@@ -4,6 +4,7 @@ from sqlalchemy.orm import create_engine, Session
 from sqlalchemy.testing.pickleable import Order
 from sqlalchemy import distinct
 from sqlalchemy import cast, Date, distinct, union
+from sqlalchemy import text
 
 engine = create_engine('sqlite:////web/Sqlite-Data/example.db')
 from sqlalchemy.orm import sessionmaker, Session
@@ -242,6 +243,12 @@ session.query(Item).filter(
     Item.name.ilike("W%")
 ).delete(synchronize_session='fetch')
 session.commit()
+
+session.query(Customer).filter(text("first_name = 'John'")).all()
+
+session.query(Customer).filter(text("town like 'Nor%'")).all()
+
+session.query(Customer).filter(text("town like 'Nor%'")).order_by(text("first_name, id desc"
 
 session.query(Item).filter(
     Item.name.ilike("W%")
