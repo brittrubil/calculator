@@ -1,3 +1,5 @@
+from _operator import and_, not_
+
 from sqlalchemy.orm import create_engine, Session
 from sqlalchemy.testing.pickleable import Order
 
@@ -138,3 +140,22 @@ session.query(Order).first()
 session.query(Customer).get(1)
 session.query(Item).get(1)
 session.query(Order).get(100)
+
+session.query(Customer).filter(or_(
+    Customer.town == 'Peterbrugh',
+    Customer.town == 'Norfolk'
+)).all()
+
+session.query(Customer).filter(and_(
+    Customer.first_name == 'John',
+    Customer.town == 'Norfolk'
+)).all()
+
+session.query(Customer).filter(and_(
+    Customer.first_name == 'John',
+    not_(
+        Customer.town == 'Peterbrugh',
+    )
+)).all()
+
+
