@@ -122,7 +122,9 @@ for ol in c1.orders[1].order_lines:
     ol.id, ol.item, ol.quantity
 
 
-q = session.query(Customer)
+q = session.query(Customer.id, Customer.first_name).all()
 
 for c in q:
     print(c.id, c.first_name)
+
+
